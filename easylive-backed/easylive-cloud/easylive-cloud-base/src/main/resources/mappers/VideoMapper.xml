@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.VideoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.Video">
+        <id column="video_id" property="videoId" />
+        <result column="user_id" property="userId" />
+        <result column="title" property="title" />
+        <result column="description" property="description" />
+        <result column="cover_file_id" property="coverFileId" />
+        <result column="category_id" property="categoryId" />
+        <result column="duration" property="duration" />
+        <result column="play_count" property="playCount" />
+        <result column="like_count" property="likeCount" />
+        <result column="comment_count" property="commentCount" />
+        <result column="status" property="status" />
+        <result column="publish_time" property="publishTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        video_id, user_id, title, description, cover_file_id, category_id, duration, play_count, like_count, comment_count, status, publish_time, create_time, update_time
+    </sql>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.ChatMessageMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.ChatMessage">
+        <id column="message_id" property="messageId" />
+        <result column="from_user_id" property="fromUserId" />
+        <result column="to_user_id" property="toUserId" />
+        <result column="content" property="content" />
+        <result column="message_type" property="messageType" />
+        <result column="image_url" property="imageUrl" />
+        <result column="is_read" property="isRead" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="read_time" property="readTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        message_id, from_user_id, to_user_id, content, message_type, image_url, is_read, status, create_time, read_time
+    </sql>
+
+</mapper>

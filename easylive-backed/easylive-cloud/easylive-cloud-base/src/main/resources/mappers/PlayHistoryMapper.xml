@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.PlayHistoryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.PlayHistory">
+        <id column="history_id" property="historyId" />
+        <result column="user_id" property="userId" />
+        <result column="video_id" property="videoId" />
+        <result column="episode_id" property="episodeId" />
+        <result column="watch_time" property="watchTime" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        history_id, user_id, video_id, episode_id, watch_time, create_time, update_time
+    </sql>
+
+</mapper>

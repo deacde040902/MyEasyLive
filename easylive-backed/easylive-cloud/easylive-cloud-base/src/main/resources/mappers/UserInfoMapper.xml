@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.UserInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.UserInfo">
+        <id column="user_id" property="userId" />
+        <result column="nick_name" property="nickName" />
+        <result column="email" property="email" />
+        <result column="avatar_path" property="avatarPath" />
+        <result column="qq_open_id" property="qqOpenId" />
+        <result column="qq_avatar" property="qqAvatar" />
+        <result column="password" property="password" />
+        <result column="login_time" property="loginTime" />
+        <result column="last_login_time" property="lastLoginTime" />
+        <result column="status" property="status" />
+        <result column="use_space" property="useSpace" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        user_id, nick_name, email, avatar_path, qq_open_id, qq_avatar, password, login_time, last_login_time, status, use_space, create_time
+    </sql>
+
+</mapper>

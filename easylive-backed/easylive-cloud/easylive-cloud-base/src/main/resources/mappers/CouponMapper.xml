@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.CouponMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.Coupon">
+        <id column="id" property="id" />
+        <result column="coupon_name" property="couponName" />
+        <result column="coupon_type" property="couponType" />
+        <result column="min_amount" property="minAmount" />
+        <result column="discount_amount" property="discountAmount" />
+        <result column="valid_days" property="validDays" />
+        <result column="total_count" property="totalCount" />
+        <result column="remain_count" property="remainCount" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, coupon_name, coupon_type, min_amount, discount_amount, valid_days, total_count, remain_count, status, create_time
+    </sql>
+
+</mapper>

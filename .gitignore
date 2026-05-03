@@ -1,0 +1,37 @@
+# Java后端
+easylive-backed/**/target/
+*.class
+*.jar
+*.war
+
+# 日志文件
+*.log
+logs/
+replay_pid*.log
+hs_err_pid*.log
+
+# 上传的文件（不提交到仓库）
+easylive-backed/file/
+easylive-backed/avatar/
+easylive-backed/hls/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# 前端
+easylive-frontend/node_modules/
+easylive-frontend/dist/
+easylive-frontend/.vite/
+npm-debug.log*
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 环境配置
+.env
+.env.local
+.env.*.local

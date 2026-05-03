@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.RechargeOrderMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.RechargeOrder">
+        <id column="id" property="id" />
+        <result column="order_no" property="orderNo" />
+        <result column="user_id" property="userId" />
+        <result column="package_id" property="packageId" />
+        <result column="coupon_id" property="couponId" />
+        <result column="original_amount" property="originalAmount" />
+        <result column="discount_amount" property="discountAmount" />
+        <result column="actual_amount" property="actualAmount" />
+        <result column="pay_status" property="payStatus" />
+        <result column="pay_time" property="payTime" />
+        <result column="pay_method" property="payMethod" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, order_no, user_id, package_id, coupon_id, original_amount, discount_amount, actual_amount, pay_status, pay_time, pay_method, create_time
+    </sql>
+
+</mapper>

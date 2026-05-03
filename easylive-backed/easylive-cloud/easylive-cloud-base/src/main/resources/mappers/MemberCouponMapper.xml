@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.MemberCouponMapper">
+
+    <select id="selectAvailableCoupons" parameterType="integer" resultType="com.easylive.base.entity.po.MemberCoupon">
+        SELECT * FROM member_coupon
+        WHERE status = 1
+          AND vip_level &lt;= #{vipLevel}
+          AND start_time &lt;= NOW()
+          AND end_time >= NOW()
+          AND (total_count IS NULL OR used_count &lt; total_count)
+        ORDER BY vip_level DESC, create_time DESC
+    </select>
+
+    <select id="selectByStatus" parameterType="integer" resultType="com.easylive.base.entity.po.MemberCoupon">
+        SELECT * FROM member_coupon WHERE status = #{status} ORDER BY create_time DESC
+    </select>
+
+</mapper>

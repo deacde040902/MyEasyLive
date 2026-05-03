@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.easylive.base.mapper.CommentMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.easylive.base.entity.po.Comment">
+        <id column="comment_id" property="commentId" />
+        <result column="video_id" property="videoId" />
+        <result column="user_id" property="userId" />
+        <result column="content" property="content" />
+        <result column="reply_comment_id" property="replyCommentId" />
+        <result column="img_path" property="imgPath" />
+        <result column="top_flag" property="topFlag" />
+        <result column="like_count" property="likeCount" />
+        <result column="status" property="status" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        comment_id, video_id, user_id, content, reply_comment_id, img_path, top_flag, like_count, status, create_time, update_time
+    </sql>
+
+</mapper>

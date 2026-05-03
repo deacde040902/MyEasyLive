@@ -1,0 +1,107 @@
+server:
+  port: 7074
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
+  main:
+    banner-mode: off
+    allow-circular-references: true
+    log-startup-info: false  # 关闭Spring启动详情日志
+  application:
+    name: easylive-cloud-web
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+      config:
+        log-level: error
+    sentinel:
+      enabled: true
+      transport:
+        dashboard: 127.0.0.1:8081
+        port: 8719
+      log:
+        dir: ./logs/sentinel
+        output-type: file
+      eager: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/easylive?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    timeout: 2000ms
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: 2822867926@qq.com
+    password: wuykydvwfvbndgga
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+management:
+  health:
+    elasticsearch:
+      enabled: false
+
+mybatis-plus:
+  type-aliases-package: com.easylive.base.entity.po
+  mapper-locations: classpath:mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.nologging.NoLoggingImpl
+
+project:
+  folder: E:/Workspace-java/EasyLive/easylive-backed
+
+easylive:
+  file:
+    base-path: ${project.folder}/file
+  avatar:
+    base-path: ${project.folder}/avatar
+  hls:
+    output-path: ${project.folder}/hls   # 和 resource 保持相同
+
+qq:
+  oauth:
+    client-id: 101xxxxxx
+    client-secret: a1b2c3d4e5f6g7h8i9j0
+    redirect-uri: http://localhost:7090/qqlogin/callback
+    authorize-url: https://graph.qq.com/oauth2.0/authorize
+    token-url: https://graph.qq.com/oauth2.0/token
+    user-info-url: https://graph.qq.com/user/get_user_info
+
+
+# Seata 分布式事务
+seata:
+  enabled: true
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      application: seata-server
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      data-id: seataServer.properties

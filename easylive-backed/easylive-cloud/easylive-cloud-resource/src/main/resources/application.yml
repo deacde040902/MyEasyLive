@@ -1,0 +1,154 @@
+server:
+  port: 7073
+  tomcat:
+    uri-encoding: UTF-8
+    threads:
+      max: 100                # 降低最大线程数，减少内存占用
+      min-spare: 10
+    accept-count: 100
+    max-connections: 5000
+
+spring:
+  application:
+    name: easylive-cloud-resource
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
+  main:
+    allow-circular-references: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/easylive?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 20      # 连接池大小适当限制
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 30000
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    timeout: 2000ms
+    lettuce:                     # 如果底层使用 Lettuce（Redisson 需单独配置）
+      pool:
+        max-active: 20
+        max-idle: 10
+        min-idle: 5
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: your-email@qq.com          # 替换为实际邮箱
+    password: your-authorization-code    # 替换为授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  web:
+    resources:
+      static-locations:
+        - file:${easylive.file.base-path}
+        - file:${easylive.hls.output-path}
+        - classpath:/static/
+
+# ==================== QQ OAuth 配置（替换为真实值） ====================
+qq:
+  oauth:
+    client-id: YOUR_QQ_APP_ID
+    client-secret: YOUR_QQ_APP_KEY
+    redirect-uri: http://your-domain/oauth/qq/callback
+
+mybatis-plus:
+  type-aliases-package: com.easylive.base.entity.po
+  mapper-locations: classpath:mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false          # 禁用二级缓存，减少内存
+    local-cache-scope: statement
+
+project:
+  folder: E:/Workspace-java/EasyLive/easylive-backed
+
+# ==================== 健康检查（禁用不必要的） ====================
+management:
+  health:
+    elasticsearch:
+      enabled: false
+    mail:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health,info    # 只暴露必要端点
+
+easylive:
+  file:
+    base-path: ${project.folder}/file
+  avatar:
+    base-path: ${project.folder}/avatar
+  hls:
+    output-path: ${project.folder}/hls
+
+# ==================== 日志（调高部分库的级别，减少输出） ====================
+logging:
+  level:
+    root: WARN
+    com.easylive: INFO
+    org.redisson: WARN
+    io.seata: WARN
+    org.apache.rocketmq: WARN
+    com.alibaba.nacos: WARN
+    org.springframework.boot.actuate: WARN
+
+# ==================== RocketMQ 配置 ====================
+rocketmq:
+  name-server: 127.0.0.1:9876
+  producer:
+    group: easylive-producer-group
+  consumer:
+    group: easylive-consumer-group
+    pull-batch-size: 10
+    consume-thread-min: 5
+    consume-thread-max: 10
+
+# ==================== Seata 配置（优化客户端） ====================
+seata:
+  application-id: ${spring.application.name}
+  enabled: true
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      application: seata-server
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      data-id: seataServer.properties
+  client:
+    rm:
+      async-commit-buffer-limit: 2000   # 降低异步提交缓冲
+      report-retry-count: 3
+      lock:
+        retry-interval: 10
+    tm:
+      commit-retry-count: 2
+      rollback-retry-count: 2

@@ -1,0 +1,60 @@
+server:
+  port: 7071
+
+spring:
+  application:
+    name: easylive-cloud-gateway
+
+  cloud:
+    # Nacos 服务注册
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+
+    # 网关路由配置
+    gateway:
+      # 自动从 nacos 发现服务
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
+      # 路由规则
+      routes:
+        # 管理后台 - 不重写路径，直接转发
+        - id: easylive-cloud-admin
+          uri: lb://easylive-cloud-admin
+          predicates:
+            - Path=/admin/**
+
+        # 前台WEB
+        - id: easylive-cloud-web
+          uri: lb://easylive-cloud-web
+          predicates:
+            - Path=/web/**
+          filters:
+            - RewritePath=/web/(?<segment>.*), /$\{segment}
+
+        # 资源服务（文件/头像/上传）
+        - id: easylive-cloud-resource
+          uri: lb://easylive-cloud-resource
+          predicates:
+            - Path=/resource/**
+          filters:
+            - RewritePath=/resource/(?<segment>.*), /$\{segment}
+
+        # 互动服务（点赞/评论/分享）
+        - id: easylive-cloud-interact
+          uri: lb://easylive-cloud-interact
+          predicates:
+            - Path=/interact/**
+          filters:
+            - RewritePath=/interact/(?<segment>.*), /$\{segment}
+
+# 日志
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: INFO

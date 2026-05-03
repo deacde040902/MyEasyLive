@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 原有注释保留，仅修改核心配置 -->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <!-- 1. 显式指定本地仓库路径（和你 IDE 配置一致，避免歧义） -->
+  <localRepository>C:\Users\TrustMe\.m2\repository</localRepository>
+
+  <!-- 原有配置：interactiveMode/offline/pluginGroups/proxies/servers 保留不变 -->
+  <interactiveMode>true</interactiveMode>
+  <offline>false</offline>
+  <pluginGroups></pluginGroups>
+  <proxies></proxies>
+  <servers></servers>
+
+  <!-- 2. 修复阿里云镜像配置 -->
+  <mirrors>
+    <!-- 替换原有阿里云镜像，使用 HTTPS 地址 -->
+    <mirror>
+      <id>aliyunmaven</id>
+      <name>阿里云中央仓库</name>
+      <url>https://repo1.maven.org/maven2/</url>
+      <mirrorOf>central</mirrorOf> <!-- 小写 central，匹配 Maven 官方仓库 ID -->
+    </mirror>
+  </mirrors>
+
+  <!-- 3. JDK 编译配置：使用 1.8（与项目配置保持一致） -->
+  <profiles>
+    <profile>
+      <id>jdk-1.8</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+        <jdk>1.8</jdk>
+      </activation>
+      <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+      </properties>
+    </profile>
+  </profiles>
+
+  <!-- 4. 显式激活 jdk-1.8 配置 -->
+  <activeProfiles>
+    <activeProfile>jdk-1.8</activeProfile>
+  </activeProfiles>
+
+</settings>

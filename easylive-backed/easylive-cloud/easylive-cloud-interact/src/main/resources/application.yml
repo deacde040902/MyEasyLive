@@ -1,0 +1,83 @@
+server:
+  port: 7072                     # 资源服务独立端口（确保不冲突）
+  servlet:
+    multipart:
+      max-file-size: 10GB
+      max-request-size: 10GB
+
+spring:
+  application:
+    name: easylive-cloud-interact
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        username: nacos
+        password: nacos
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/easylive?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password: ""
+    timeout: 2000ms
+  mail:
+    host: smtp.qq.com
+    port: 587
+    username: your-email@qq.com          # 替换为实际邮箱
+    password: your-authorization-code    # 替换为授权码
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+mybatis-plus:
+  type-aliases-package: com.easylive.base.entity.po
+  mapper-locations: classpath:mappers/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+netty:
+  websocket:
+    port: 7077
+
+# 文件存储路径（统一管理）
+project:
+  folder: E:/Workspace-java/EasyLive/easylive-backed
+
+easylive:
+  file:
+    base-path: ${project.folder}/file
+  avatar:
+    base-path: ${project.folder}/avatar
+
+logging:
+  level:
+    root: INFO
+    com.easylive: INFO
+
+# ==================== Seata 分布式事务配置 ====================
+seata:
+  enabled: true
+  tx-service-group: default_tx_group
+  registry:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      application: seata-server
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      username: nacos
+      password: nacos
+      group: SEATA_GROUP
+      data-id: seataServer.properties
