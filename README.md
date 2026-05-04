@@ -27,7 +27,7 @@
 - **消息队列**: RocketMQ
 - **实时通信**: Netty (WebSocket)
 - **第三方登录**: QQ OAuth
-
+- **邮箱服务**: QQ邮箱
 ### 前端
 - **框架**: Vue 3
 - **构建工具**: Vite
