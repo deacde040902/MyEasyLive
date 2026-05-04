@@ -70,7 +70,7 @@ http://localhost:8848/nacos
 ## 项目演示
 ### 首页-（无登录状态）：上传的视频在此显示，左侧为大视频，进行轮播效果。
 <img width="697" height="474" alt="image" src="https://github.com/user-attachments/assets/0e22d912-6c72-481f-b7de-b0cbb78afad0" />
-### 登录界面：点击首页上方黑色默认头像进入。分别有用户登录、管理员登录和注册界面。注册使用真实qq邮箱进行验证码验证。
+### 登录界面：点击首页上方黑色默认头像进入。分别有用户登录、管理员登录和注册界面。注册使用真实qq邮箱进行验证码验证，找回/重置密码同理。
 <img width="692" height="355" alt="image" src="https://github.com/user-attachments/assets/8e289c04-cc63-4231-b560-64b3877ad633" />
 <img width="692" height="356" alt="image" src="https://github.com/user-attachments/assets/fadbbc6d-bc3c-4bdc-a17b-28211c43ad71" />
 <img width="691" height="363" alt="image" src="https://github.com/user-attachments/assets/64bdb744-46be-4fb8-a30a-d1c4e2a38cd8" />
